@@ -9,7 +9,8 @@
 
 .navigation__list {
   display: flex;
-  padding: 0 calc((100vw / 2) - (var(--container) / 2));
+  /* padding: 0 calc((100vw / 2) - (var(--container) / 2)); */
+  padding: 5px 10px;
   overflow-x: auto;
   overflow-y: hidden;
   column-gap: 8px;

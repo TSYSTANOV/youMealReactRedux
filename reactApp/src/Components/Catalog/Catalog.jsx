@@ -1,24 +1,31 @@
+import styles from './Catalog.module.css'
+import { CatalogProduct } from '../CatalogProduct/CatalogProduct';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { productRequestAsync } from '../../redux/ProductSlice';
 function Catalog() {
+  const dispatch = useDispatch()
+  const {products} = useSelector((state)=>state.products)
+  const {category, activeCategory} = useSelector((state)=>state.category)
+
+  useEffect(()=>{
+    if(category[activeCategory]){
+      dispatch(productRequestAsync(category[activeCategory].title))
+    }
+  },[category, activeCategory])
+
   return (
-    <section className="cards_items">
-      <div className="container">
-        <div className="cards_items_card">
-          <div className="cards_items_title">
-            <h2>Бургеры</h2>
+    <section className={styles.cards_items}>
+        <div className={styles.cards_items_card}>
+          <div className={styles.cards_items_title}>
+            <h2>{category[activeCategory]?.rus}</h2>
           </div>
-          <div className="cards_items__products">
-            <div className="item__product">
-              <img src="img/0245702138.jpg" alt="burger" />
-              <p className="item__product1">
-                689<span> ₽</span>
-              </p>
-              <p className="product_name">М'ясная бомба</p>
-              <p className="product_detail">512г</p>
-              <button>Добавить</button>
-            </div>
+          <div className={styles.cards_items__products}>
+            {products.map((item)=>{
+              return  <CatalogProduct key={item.id} {...item}/>
+            })}
           </div>
         </div>
-      </div>
     </section>
   );
 }

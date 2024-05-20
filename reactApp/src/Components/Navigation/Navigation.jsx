@@ -1,73 +1,36 @@
+import { useEffect } from "react";
+import { categoryRequstAsync, changeActiveCategory } from "../../redux/CategorySlice";
 import { Container } from "../Container/Container";
 import styles from "./Navigation.module.css";
+import {useDispatch, useSelector} from 'react-redux'
+import { API_URI } from "../../Utils/const";
 function Navigation() {
+  const dispatch = useDispatch()
+  const {category,activeCategory} = useSelector((state)=>state.category)
+  function handleChangeCategory(e){
+    if(e.target.tagName !== 'BUTTON')return
+    dispatch(changeActiveCategory(+e.target.dataset.id))
+  }
+
+  useEffect(()=>{
+    dispatch(categoryRequstAsync())
+  },[])
+
   return (
     <nav className={styles.navigation}>
       <Container classNameName={"navigation__container"}>
-        <ul className={styles.navigation__list}>
-          <li className={styles.navigation__item}>
-            <button
-              className={`${styles.navigation__button} ${styles.navigation__button_burger} ${styles.navigation__button_active}`}
-            >
-              Бургеры
-            </button>
-          </li>
-          <li className={styles.navigation__item}>
-            <button
-              className={`${styles.navigation__button} ${styles.navigation__button_snack}`}
-            >
-              Закуски
-            </button>
-          </li>
-          <li className={styles.navigation__item}>
-            <button
-              className={`${styles.navigation__button} ${styles.navigation__button_hotdog}`}
-            >
-              Хот-доги
-            </button>
-          </li>
-          <li className={styles.navigation__item}>
-            <button
-              className={`${styles.navigation__button} ${styles.navigation__button_combo}`}
-            >
-              Комбо
-            </button>
-          </li>
-          <li className={styles.navigation__item}>
-            <button
-              className={`${styles.navigation__button} ${styles.navigation__button_shawarma}`}
-            >
-              Шаурма
-            </button>
-          </li>
-          <li className={styles.navigation__item}>
-            <button
-              className={`${styles.navigation__button} ${styles.navigation__button_pizza}`}
-            >
-              Пицца
-            </button>
-          </li>
-          <li className={styles.navigation__item}>
-            <button
-              className={`${styles.navigation__button} ${styles.navigation__button_wok}`}
-            >
-              Вок
-            </button>
-          </li>
-          <li className={styles.navigation__item}>
-            <button
-              className={`${styles.navigation__button} ${styles.navigation__button_dessert}`}
-            >
-              Десерты
-            </button>
-          </li>
-          <li className={styles.navigation__item}>
-            <button
-              className={`${styles.navigation__button} ${styles.navigation__button_sauce}`}
-            >
-              Соусы
-            </button>
-          </li>
+        <ul className={styles.navigation__list} onClick={handleChangeCategory}>
+          {category.map((item,i)=>{
+            return   <li key={item.title} className={styles.navigation__item}>
+                      <button
+                      style={{backgroundImage:`url(${API_URI+'/'+item.image})`}}
+                        className={`${styles.navigation__button} ${i=== activeCategory ? styles.navigation__button_active:''}`}
+                        data-id={i}
+                      >
+                        {item.rus}
+                      </button>
+                    </li>
+                    })}
         </ul>
       </Container>
     </nav>
