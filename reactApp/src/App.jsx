@@ -6,6 +6,7 @@ import { Order } from "./Components/Order/Order";
 import { Catalog } from "./Components/Catalog/Catalog";
 import { Footer } from "./Components/Footer/Footer";
 import { Container } from "./Components/Container/Container";
+import { ModalProduct } from "./Components/ModalProduct/ModalProduct";
 
 function App() {
   return (
@@ -15,14 +16,15 @@ function App() {
         <Navigation />
         <section className="catalog">
           <Container>
-          <section className="catalog_start">
-          <Order />
-          <Catalog />
-          </section>
+            <section className="catalog_start">
+              <Order />
+              <Catalog />
+            </section>
           </Container>
         </section>
       </main>
-      <Footer/>
+      <Footer />
+      <ModalProduct />
     </>
   );
 }

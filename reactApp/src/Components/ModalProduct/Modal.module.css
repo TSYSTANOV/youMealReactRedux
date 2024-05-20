@@ -6,6 +6,25 @@
   background-color: rgba(0, 0, 0, 0.8);
   cursor: pointer;
 }
+.modal__card_number {
+  display: flex;
+  font-size: 22px;
+  gap: 10px;
+}
+.minus_number {
+  cursor: pointer;
+  font-size: 24px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.plus_number {
+  cursor: pointer;
+  font-size: 24px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
 .modal__card {
   background-color: #fff;
   display: flex;
@@ -394,7 +413,7 @@
   .modal__card-content-outset {
     font-size: 12px;
   }
-  .card_number {
+  .modal__card_number {
     font-size: 16px;
   }
   .modal__card-summary p,
@@ -422,7 +441,7 @@
   }
   .modal__card_color {
     padding: 44px 24px 24px 366px;
-    background: url(images/g12.png) 72px 88px,
+    background: url(../../images/g12.png) 72px 88px,
       linear-gradient(to right, #ffab08 50%, #f9f9f9 50%);
     background-repeat: no-repeat;
   }
