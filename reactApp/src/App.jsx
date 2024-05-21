@@ -7,6 +7,7 @@ import { Catalog } from "./Components/Catalog/Catalog";
 import { Footer } from "./Components/Footer/Footer";
 import { Container } from "./Components/Container/Container";
 import { ModalProduct } from "./Components/ModalProduct/ModalProduct";
+import { ModalOrder } from "./Components/ModalOrder/ModalOrder";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       </main>
       <Footer />
       <ModalProduct />
+      <ModalOrder />
     </>
   );
 }

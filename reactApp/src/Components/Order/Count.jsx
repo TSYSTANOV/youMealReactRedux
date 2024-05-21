@@ -1,19 +1,25 @@
-
-import { useState } from "react";
 import styles from "./Order.module.css";
+import { useDispatch } from "react-redux";
+import { decreaseCount, increaseCount } from "../../redux/OrderSlice";
 
-function Count(){
-  const [count, setCount] = useState(1)
-  function handleIncreaseCount(){
-    setCount(count+1)
+function Count({ count, id }) {
+  const dispatch = useDispatch();
+  function handleIncreaseCount() {
+    dispatch(increaseCount({ id: id }));
   }
-  function handleDecreaseCount(){
-    setCount(count-1)
+  function handleDecreaseCount() {
+    dispatch(decreaseCount({ id: id }));
   }
-  return   <div className={styles.card_number}>
-              <button className={styles.minus_number} onClick={handleDecreaseCount}>-</button>
-              <p>{count}</p>
-              <button className={styles.plus_number} onClick={handleIncreaseCount}>+</button>
-            </div>
+  return (
+    <div className={styles.card_number}>
+      <button className={styles.minus_number} onClick={handleDecreaseCount}>
+        -
+      </button>
+      <p>{count}</p>
+      <button className={styles.plus_number} onClick={handleIncreaseCount}>
+        +
+      </button>
+    </div>
+  );
 }
-export {Count}
+export { Count };

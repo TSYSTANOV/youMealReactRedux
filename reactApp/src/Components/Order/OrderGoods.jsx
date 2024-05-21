@@ -1,18 +1,21 @@
-
 import styles from "./Order.module.css";
 import { Count } from "./Count";
+import { API_URI } from "../../Utils/const";
 
-function OrderGoods(){
-  return <div className={styles.cart_container_content_card}>
-  <img src="../../images/Rectangle 2.png" alt="burger" />
-  <div className={styles.card_text}>
-    <h2>Супер сырный</h2>
-    <span>512г</span>
-    <p>
-      589<span>₽</span>
-    </p>
-  </div>
-  <Count/>
-</div>
+function OrderGoods({ count, price, image, title, weight, id }) {
+  return (
+    <div className={styles.cart_container_content_card}>
+      <img src={`${API_URI}/${image}`} alt={title} />
+      <div className={styles.card_text}>
+        <h2>{title}</h2>
+        <span>{weight}г</span>
+        <p>
+          {price}
+          <span>₽</span>
+        </p>
+      </div>
+      <Count count={count} id={id} />
+    </div>
+  );
 }
-export {OrderGoods}
+export { OrderGoods };

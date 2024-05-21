@@ -7,12 +7,14 @@ import { Container } from "../Container/Container";
 import styles from "./Navigation.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { API_URI } from "../../Utils/const";
+import { closeCart } from "../../redux/OrderSlice";
 function Navigation() {
   const dispatch = useDispatch();
   const { category, activeCategory } = useSelector((state) => state.category);
   function handleChangeCategory(e) {
     if (e.target.tagName !== "BUTTON") return;
     dispatch(changeActiveCategory(+e.target.dataset.id));
+    dispatch(closeCart());
   }
 
   useEffect(() => {

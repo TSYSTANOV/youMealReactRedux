@@ -200,18 +200,18 @@
 }
 .cart__open {
   /* max-height: 400px; */
-  /* max-height:0px; */
+  /* max-height: 0px; */
   overflow: hidden;
   position: relative;
-
   /* display: none; */
   padding: 0px 10px 16px 10px;
   /*position: absolute;*/
   width: 100%;
   background-color: #fff;
   border-radius: 0px 0px 12px 12px;
-  /* transition:0.5s; */
+  transition: 0.8s;
 }
+
 .cart_section {
   margin-bottom: 30px;
 }
