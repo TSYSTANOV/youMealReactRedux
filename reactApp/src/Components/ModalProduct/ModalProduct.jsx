@@ -27,6 +27,7 @@ function ModalProduct() {
     }, 1000);
   }
   function handleAddToCart(id) {
+    // dispatch(addLocalStorProductCart({id: id, count: count}))
     dispatch(addProduct({ id: id, count: count }));
     handleCloseModal();
   }

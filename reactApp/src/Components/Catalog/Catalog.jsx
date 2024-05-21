@@ -8,6 +8,8 @@ function Catalog() {
   const dispatch = useDispatch();
   const { products, loading } = useSelector((state) => state.products);
   const { category, activeCategory } = useSelector((state) => state.category);
+  const { orderList } = useSelector((state)=>state.order)
+  const idInCartList = orderList.map((item)=>item.id)
   useEffect(() => {
     if (category[activeCategory]) {
       dispatch(productRequestAsync(category[activeCategory].title));
@@ -26,7 +28,7 @@ function Catalog() {
         <div className={styles.cards_items__products} onClick={handleModal}>
           {products.length !== 0 ? (
             products.map((item) => {
-              return <CatalogProduct key={item.id} {...item} />;
+              return <CatalogProduct key={item.title} {...item} inCart={idInCartList.includes(item.id)}/>;
             })
           ) : loading === "success" ? (
             <h3>Товаров в данной категории нет!</h3>

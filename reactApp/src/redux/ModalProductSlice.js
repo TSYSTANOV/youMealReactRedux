@@ -8,10 +8,9 @@ export const modalProductFetch = createAsyncThunk("modal/fetch", async (id) => {
   return data;
 });
 
+
 export const localStorageMiddleWare = (state) => (next) => (action) => {
-  console.log(state.getState().order.orderList);
   const nextAction = next(action);
-  console.log(state.getState().order.orderList);
   if (nextAction.type === "order/addProduct") {
     localStorage.setItem(
       "order",
@@ -35,10 +34,9 @@ const ModalProductSlice = createSlice({
   },
   extraReducers: (bulder) => {
     bulder.addCase(modalProductFetch.fulfilled, (state, action) => {
-      state.isOpen = true;
-
+      state.isOpen = true
       state.activeProduct = action.payload;
-    });
+    })
   },
 });
 export const { toggleModal } = ModalProductSlice.actions;
